@@ -42,8 +42,8 @@
 
 
             const generateResponse = (chatElement, userMessage) => {
-                const API_URL = "http://127.0.0.1:8080/chat"; // Flask route
-                // const API_URL = "/chat"; // Flask route
+                // const API_URL = "http://127.0.0.1:8080/chat"; // Flask route
+                const API_URL = "/chat"; // Flask route
                 const messageElement = chatElement.querySelector("p");
                 const threadId = sessionStorage.getItem('threadId'); // Retrieve the thread ID
 
@@ -114,7 +114,8 @@
 
 
             const startConversation = () => {
-                fetch('http://127.0.0.1:8080/start')
+                // fetch('http://127.0.0.1:8080/start')
+                fetch('/start')
                     .then(response => response.json())
                     .then(data => {
                         const threadId = data.thread_id; // The thread ID from the backend

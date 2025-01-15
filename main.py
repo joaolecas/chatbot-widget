@@ -12,7 +12,8 @@ from flask_cors import CORS
 required_version = version.parse("1.1.1")
 current_version = version.parse(openai.__version__)
 
-OPENAI_API_KEY = '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' 
+# OPENAI_API_KEY = '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' 
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
 if current_version < required_version:
   raise ValueError(
@@ -29,7 +30,8 @@ CORS(app)  # This enables CORS for all domains on all routes. For production, re
 client = OpenAI(api_key=OPENAI_API_KEY)
 
 # Load assistant
-assistant_id = "asst_rlJXotEdqRO4Wn2zr0LfGA5f" 
+# assistant_id = "asst_rlJXotEdqRO4Wn2zr0LfGA5f"
+assistant_id = os.environ.get("ASSISTANT_ID")  # get from env  
 
 # Start conversation thread
 @app.route('/start', methods=['GET'])
