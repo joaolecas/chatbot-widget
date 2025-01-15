@@ -5,7 +5,7 @@
     // Dynamically load chatbot CSS
     const chatbotStyles = document.createElement("link");
     chatbotStyles.rel = "stylesheet";
-    chatbotStyles.href = "https://chatbot-widget-six.vercel.app/chatbot-widget.css";//"chatbot-widget.css"; // Chatbot's CSS file
+    chatbotStyles.href = "https://chatbot-widget-six.vercel.app/chatbot-widget.css";  //"chatbot-widget.css"; // Chatbot's CSS file
     document.head.appendChild(chatbotStyles);
 
     // Load the chatbot HTML
