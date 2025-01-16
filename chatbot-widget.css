@@ -1,14 +1,32 @@
 /* Import Google font - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
+/* -------------------------------------
+   Ensure chatbot layers over everything
+   ------------------------------------- */
+.chatbot, 
+.chatbot-toggler,
+.chatbot .chatbox,
+.chatbot .chat-input {
+  z-index: 999999; /* or a large number */
+  position: relative;
+}
+
+/* Body background can be removed/adjusted as needed */
 body {
   background: #E3F2FD;
 }
+
+/* --------------------
+   Chatbot Toggler
+   -------------------- */
 .chatbot-toggler {
   position: fixed;
   bottom: 30px;
@@ -24,22 +42,29 @@ body {
   border-radius: 50%;
   background: #ff2454;
   transition: all 0.2s ease;
-  z-index: 999999; /* or some large number */
 }
+
 body.show-chatbot .chatbot-toggler {
   transform: rotate(90deg);
 }
+
 .chatbot-toggler span {
   color: #fff;
   position: absolute;
 }
+
 .chatbot-toggler span:last-child,
-body.show-chatbot .chatbot-toggler span:first-child  {
+body.show-chatbot .chatbot-toggler span:first-child {
   opacity: 0;
 }
+
 body.show-chatbot .chatbot-toggler span:last-child {
   opacity: 1;
 }
+
+/* --------------------
+   Chatbot Container
+   -------------------- */
 .chatbot {
   position: fixed;
   right: 35px;
@@ -56,11 +81,16 @@ body.show-chatbot .chatbot-toggler span:last-child {
               0 32px 64px -48px rgba(0,0,0,0.5);
   transition: all 0.1s ease;
 }
+
 body.show-chatbot .chatbot {
   opacity: 1;
   pointer-events: auto;
   transform: scale(1);
 }
+
+/* --------------------
+   Chatbot Header
+   -------------------- */
 .chatbot header {
   padding: 16px 0;
   position: relative;
@@ -69,6 +99,7 @@ body.show-chatbot .chatbot {
   background: #ff2454;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
+
 .chatbot header span {
   position: absolute;
   right: 15px;
@@ -77,14 +108,21 @@ body.show-chatbot .chatbot {
   cursor: pointer;
   transform: translateY(-50%);
 }
+
 header h2 {
   font-size: 1.4rem;
 }
+
+/* --------------------
+   Chatbox
+   -------------------- */
 .chatbot .chatbox {
   overflow-y: auto;
   height: 510px;
   padding: 30px 20px 100px;
 }
+
+/* Custom scrollbar */
 .chatbot :where(.chatbox, textarea)::-webkit-scrollbar {
   width: 6px;
 }
@@ -96,10 +134,13 @@ header h2 {
   background: #ccc;
   border-radius: 25px;
 }
+
+/* Chat messages */
 .chatbox .chat {
   display: flex;
   list-style: none;
 }
+
 .chatbox .outgoing {
   margin: 20px 0;
   justify-content: flex-end;
@@ -115,16 +156,14 @@ header h2 {
   color: #0066cc; /* Color for links */
   text-decoration: none; /* Remove underline */
 }
-
 .chatbox .chat p a:hover {
-  text-decoration: underline; /* Add underline on hover for better interaction feedback */
+  text-decoration: underline; /* better UX for links */
 }
-
 .chatbox .chat p b {
-  font-weight: bold; /* Ensure bold text is displayed as expected */
+  font-weight: bold; 
 }
 
-
+/* Incoming message avatar block */
 .chatbox .incoming span {
   width: 32px;
   height: 32px;
@@ -137,6 +176,8 @@ header h2 {
   border-radius: 4px;
   margin: 0 10px 7px 0;
 }
+
+/* Chat bubble design */
 .chatbox .chat p {
   white-space: pre-wrap;
   padding: 12px 16px;
@@ -146,17 +187,21 @@ header h2 {
   font-size: 0.95rem;
   background: #ff2454;
 }
+
 .chatbox .incoming p {
   border-radius: 10px 10px 10px 0;
+  color: #000;
+  background: #f2f2f2;
 }
+
 .chatbox .chat p.error {
   color: #721c24;
   background: #f8d7da;
 }
-.chatbox .incoming p {
-  color: #000;
-  background: #f2f2f2;
-}
+
+/* --------------------
+   Chat Input
+   -------------------- */
 .chatbot .chat-input {
   display: flex;
   gap: 5px;
@@ -167,6 +212,7 @@ header h2 {
   padding: 3px 20px;
   border-top: 1px solid #ddd;
 }
+
 .chat-input textarea {
   height: 55px;
   width: 100%;
@@ -177,6 +223,7 @@ header h2 {
   padding: 15px 15px 15px 0;
   font-size: 0.95rem;
 }
+
 .chat-input span {
   align-self: flex-end;
   color: #ff2454;
@@ -187,21 +234,23 @@ header h2 {
   visibility: hidden;
   font-size: 1.35rem;
 }
+
 .chat-input textarea:valid ~ span {
   visibility: visible;
 }
 
-/*from chatgpt - changing the avatar JEC*/
+/* Avatar image inside the chat bubble */
 .chat-avatar {
-  width: 40px;   /* Adjust width as needed */
-  height: 40px;  /* Adjust height as needed */
-  border-radius: 50%; /* Make it a circle */
-  margin-right: 10px; /* Add space between avatar and message */
-  object-fit: cover; /* Ensure the image scales properly */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
 }
 
-
-
+/* --------------------
+   Responsive
+   -------------------- */
 @media (max-width: 490px) {
   .chatbot-toggler {
     right: 20px;
