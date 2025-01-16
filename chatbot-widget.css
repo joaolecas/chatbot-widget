@@ -24,6 +24,7 @@ body {
   border-radius: 50%;
   background: #ff2454;
   transition: all 0.2s ease;
+  z-index: 999999; /* or some large number */
 }
 body.show-chatbot .chatbot-toggler {
   transform: rotate(90deg);
